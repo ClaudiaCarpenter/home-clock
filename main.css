@@ -4,8 +4,7 @@ body {margin: 0}
 
 td {text-align: center}
 
-div.dark, div.dark td {background-color: #5d5d00; color:beige;}
-div.light, div.light td {background-color: beige; color: #5d5d00;}
+* {background-color: #5d5d00; color:beige;}
 
 #weatherTemp {font-size: 140px; padding-left: 20px}
 #weatherIcon {font-size: 140px}

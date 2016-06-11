@@ -116,10 +116,8 @@ function formatDate(date) {
     return days[date.getDay()].toUpperCase() + '&nbsp;' + (date.getMonth() + 1) + '/' + date.getDate();
 }
 
-
 setTimeout(getAndUpdateWeather, 100);
 setInterval(getAndUpdateWeather, 1800000);
-setInterval(function() {$('#bgDiv').toggleClass( "dark light" );}, 60000);
 
 var yahooCodes = ["tornado",
     "day-storm-showers",
