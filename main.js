@@ -1,8 +1,3 @@
-var yesterdayRequest = "https://api.wunderground.com/api/63291acfffacc47e/yesterday/q/CA/94022.json";
-var todayRequest = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where" +
-    "%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22los%20altos%2C%20ca%22)" +
-    "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-
 var savedYesterday = null;
 var savedToday = null;
 var savedForecast = null;
@@ -10,6 +5,11 @@ var savedTime = null;
 var savedSunset = null;
 
 function getAndUpdateWeather() {
+    var yesterdayRequest = "https://api.wunderground.com/api/63291acfffacc47e/yesterday/q/CA/94022.json";
+    var todayRequest = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20" +
+        "where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%2294022%22)" +
+        "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+
     try {
         savedYesterday = null;
         $.ajax({
@@ -60,29 +60,33 @@ function displayWeather() {
     }
 
     if (savedTime != null) {
-        var hours = savedTime.getHours();
-        if (hours == 0) {
-            hours = 12;
-        } else if (hours > 12) {
-            hours -= 12;
-        }
-        var minutes = parseInt(savedTime.getMinutes());
-        var minutesString = minutes.toString();
-        if (minutes < 10) {
-            minutesString = '0' + minutesString;
-        }
-        var seconds = parseInt(savedTime.getSeconds());
-        var secondsString = seconds.toString();
-        if (seconds < 10) {
-            secondsString = '0' + secondsString;
-        }
-        $('#time').html(hours + ':' + minutesString);
-        $('#date').html(formatDate(savedTime));
+        showTime();
     }
 
     if (savedSunset != null) {
        $('#sunset').html('If all goes according to plan, the sun should set tonight @ ' + savedSunset);
     }
+}
+
+function showTime() {
+    var hours = savedTime.getHours();
+    if (hours == 0) {
+        hours = 12;
+    } else if (hours > 12) {
+        hours -= 12;
+    }
+    var minutes = parseInt(savedTime.getMinutes());
+    var minutesString = minutes.toString();
+    if (minutes < 10) {
+        minutesString = '0' + minutesString;
+    }
+    var seconds = parseInt(savedTime.getSeconds());
+    var secondsString = seconds.toString();
+    if (seconds < 10) {
+        secondsString = '0' + secondsString;
+    }
+    $('#time').html(hours + ':' + minutesString);
+    $('#date').html(formatDate(savedTime));
 }
 
 function formatTempRange(temps) {
@@ -93,23 +97,6 @@ function formatTempRange(temps) {
     return temp;
 }
 
-function setCookie(name, value) {
-    document.cookie = name + "=" + value + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ')
-            c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0)
-            return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
 function formatDate(date) {
     var days = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
     var months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
@@ -118,6 +105,10 @@ function formatDate(date) {
 
 setTimeout(getAndUpdateWeather, 100);
 setInterval(getAndUpdateWeather, 1800000);
+setInterval(function() {
+    savedTime = new Date();
+    showTime();
+}, 500);
 
 var yahooCodes = ["tornado",
     "day-storm-showers",
