@@ -5,26 +5,38 @@ var savedTime = null;
 var savedSunset = null;
 var savedLocation = "94022";
 var savedCity = "Los Altos";
+var dayOfWeek = (new Date()).getDay();
+
+function getAndUpdateYesterday() {
+	var yesterdayRequest = "https://api.wunderground.com/api/63291acfffacc47e/yesterday/q/CA/94022.json";
+	
+	try {
+		$.ajax({
+			type: "GET", 
+			url: yesterdayRequest, 
+			dataType: "jsonp",
+			
+			success: function yesterdaySuccess(yesterdayData) {
+				console.log('getAndUpdateYesterday success @ ', new Date(), yesterdayData);
+				savedYesterday = [];
+				savedYesterday.low = yesterdayData.history.dailysummary[0].mintempi;
+				savedYesterday.high = yesterdayData.history.dailysummary[0].maxtempi;
+				getAndUpdateWeather();
+			},
+			
+			fail: function yesterdayFail(XHR, textStatus, errorThrown) {
+				console.log('getAndUpdateYesterday fail @ ', new Date(), XHR, textStatus, errorThrown);				
+		}});
+	} catch (ex) {
+		debugger;
+	}
+}
+
 
 function getAndUpdateWeather() {
-    var yesterdayRequest = "https://api.wunderground.com/api/63291acfffacc47e/yesterday/q/CA/94022.json";
     var todayRequest = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20" +
         "where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" + savedLocation + "%22)" +
         "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-
-    try {
-        savedYesterday = null;
-        $.ajax({
-            type: "GET", url: yesterdayRequest, dataType: "jsonp",
-            success: function(yesterdayData) {
-                savedYesterday = [];
-                savedYesterday.low = yesterdayData.history.dailysummary[0].mintempi;
-                savedYesterday.high = yesterdayData.history.dailysummary[0].maxtempi;
-                displayWeather();
-            }});
-    } catch (ex) {
-        debugger;
-    }
 
     try {
         savedToday = null;
@@ -38,6 +50,15 @@ function getAndUpdateWeather() {
                 savedCity = todayData.query.results.channel.location.city + ',' +
                     todayData.query.results.channel.location.region;
                 displayWeather();
+				
+				var dayOfWeekTest = (new Date()).getDay();
+				if (dayOfWeek != dayOfWeekTest) {
+				    console.log('getAndUpdateWeather dayOfWeek change ', dayOfWeek, dayOfWeekTest);								
+					dayOfWeek = dayOfWeekTest;
+					getAndUpdateYesterday();
+				} else {
+				  console.log('getAndUpdateWeather dayOfWeek no change ', dayOfWeek, dayOfWeekTest);								
+				}
             }});
     } catch (ex) {
         debugger;
@@ -126,8 +147,10 @@ if (checkLocation) {
     savedLocation = checkLocation;
 }
 
-setTimeout(getAndUpdateWeather, 100);
+setTimeout(getAndUpdateYesterday, 10);
+
 setInterval(getAndUpdateWeather, 1800000);
+
 setInterval(function() {
     savedTime = new Date();
     showTime();
