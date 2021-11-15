@@ -10,7 +10,8 @@ td {text-align: center}
 #weatherIcon {font-size: 140px}
 
 #time  {font-size: 280px; text-align: center; padding: 150px 0 0 0; opacity:.6} 
-#date  {font-size: 72px;  text-align: center; padding: 20px 0 200px 0; opacity:.4}
+#date  {font-size: 72px;  text-align: center; padding: 15px 0; opacity:.4}
+#temp  {font-size: 72px;  text-align: center; padding: 15px 0 200px 0; opacity:.6}
 
 #time #dark {border: 1px solid #E7DBA9}
 #time #light {border: 1px solid #231901}

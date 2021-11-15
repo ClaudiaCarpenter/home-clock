@@ -40,6 +40,10 @@ function getAndUpdateWeather() {
     }
 }
 
+function kelvinToF(kelvin) {
+  return (parseFloat(kelvin)-273.15) * 1.8 + 32;
+}
+
 function displayWeather() {
     if (savedToday != null) {
         $('#weatherIcon').attr('class', "wi wi-" + yahooCodes[savedToday.code]); //attr('src', subDir + savedToday.code + '.png');
