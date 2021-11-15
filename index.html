@@ -2,43 +2,26 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    <title>Time / Weather</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600' rel='stylesheet' type='text/css'>
+    <title>Pretty Clock</title>
+    <link href='https://fonts.googleapis.com/css?family=Redressed' rel='stylesheet' type='text/css'>
     <link href='./weather-icons.css' rel='stylesheet' type='text/css'>
-    <script src="./main.js" ></script>
+    <script src="./main.js"></script>
     <link href='./main.css' rel='stylesheet' type='text/css'>
     <script>
         function hideBar() {
-            setTimeout(function(){
+            setTimeout(function () {
                 window.scrollTo(0, 1);
             }, 0);
         }
     </script>
 </head>
 
-<body onload="hideBar();" style="overflow: hidden; box-sizing: content-box; width:768px; height:1024px; padding: 10px 0">
+<body onload="hideBar();">
 
-<div id=bgDiv class=dark align=center style="margin-top: 20px">
-    <div id=date style="text-align: center; padding: 0; opacity:.7; line-height: 180px"> </div>
-    <div id=time style="text-align: center; line-height:260px; padding-bottom: 20px;"> </div>
-
-    <div style="font-size: 36px; text-align: center"  id="city"></div>
-
-    <div style="text-align: center; background: transparent; margin-top: -20px;">
-        <i id=weatherIcon style="opacity:.7"></i>
-        <span style="background: transparent" id=weatherTemp></span>
+    <div id=bgDiv class=dark>
+        <div id=time style="text-align: center; padding: 0 0 20px 0; line-height:280px"> </div>
+        <div id=date style="text-align: center; padding: 0; opacity:.7; line-height: 180px"> </div>
     </div>
-
-    <div style="font-size: 24px; text-align: center; padding: 14px 0 34px 0" id=sunset> </div>
-
-    <table cellpadding="0" cellspacing="0" width="100%"><tr valign="top">
-        <td id=weathery width=25% style="opacity:.4"></td>
-        <td id=weather0 width=25%></td>
-        <td id=weather1 width=25% style="opacity:.6"></td>
-        <td id=weather2 width=25% style="opacity:.5"></td>
-    </tr></table>
-</div>
 </body>
 
 </html>
