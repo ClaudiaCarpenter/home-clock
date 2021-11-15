@@ -4,7 +4,7 @@ body {margin: 0}
 
 td {text-align: center}
 
-* {background-color: #5d5d00; color:beige;}
+* {background-color: #231901; color:#E7DBA9;}
 
 #weatherTemp {font-size: 180px; padding-left: 20px}
 #weatherIcon {font-size: 140px}
@@ -12,8 +12,8 @@ td {text-align: center}
 #time  {font-size: 280px; text-align: center; padding: 150px 0 0 0} 
 #date  {font-size: 72px;  text-align: center; padding: 20px 0 200px 0; opacity:.7}
 
-#time #dark {border: 1px solid beige}
-#time #light {border: 1px solid #5d5d00}
+#time #dark {border: 1px solid #E7DBA9}
+#time #light {border: 1px solid #231901}
 td {font-size: 38px}
 
 #weather0 i {line-height: 1.75}
