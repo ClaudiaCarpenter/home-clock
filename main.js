@@ -137,15 +137,13 @@ function formatDate(date) {
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
-    var days = new Array("Sunday", "Monday", "Tueday", "Wedday", "Thursday", "Friday", "Satday");
-    return days[date.getDay()] + '&nbsp;&nbsp;&middot;&nbsp;&nbsp;' + (date.getMonth() + 1) + '/' + date.getDate();
 }
 
 function updateTime() {
     const parts = dateTimeFormat.formatToParts(new Date());
     console.log(parts);
     document.getElementById('time').innerHTML = parts[8].value + ':' + parts[10].value;
-    document.getElementById('date').innerHTML = parts[0].value + '&nbsp;&nbsp;&middot;&nbsp;&nbsp;' + parts[2].value + '&nbsp' + parts[4].value;
+    document.getElementById('date').innerHTML = parts[0].value + ', ' + parts[2].value + '&nbsp' + parts[4].value;
 }
 
 const SEC = 1000;
