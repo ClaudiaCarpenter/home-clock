@@ -1,4 +1,4 @@
-* {font-family: 'Source Sans Pro'}
+* {font-family: 'Redressed'}
 
 body {margin: 0}
 
@@ -9,8 +9,8 @@ td {text-align: center}
 #weatherTemp {font-size: 180px; padding-left: 20px}
 #weatherIcon {font-size: 140px}
 
-#date  {font-size: 180px}
-#time {font-size: 320px}
+#date  {font-size: 72px}
+#time {font-size: 320px; height:300px}
 #time #dark {border: 1px solid beige}
 #time #light {border: 1px solid #5d5d00}
 td {font-size: 38px}
