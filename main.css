@@ -5,7 +5,8 @@
 
 body {margin: 0}
 
-#container { margin: 100px 0 500px 0}
+#container { margin-top: 100px}
+#spacer {height: 500px}
 
 #weatherTemp {font-size: 180px; padding-left: 20px}
 #weatherIcon {font-size: 140px}
