@@ -7,6 +7,8 @@ const urlParams = new URLSearchParams(queryString);
 const key = urlParams.get('key');
 
 let savedTemp = 0;
+let sunset = new Date();
+let isNight = true;
 
 function getAndUpdateWeather() {
     if (key) {
@@ -25,12 +27,8 @@ function getAndUpdateWeather() {
 }
 
 function displayWeather(weather) {
-    // const text = [];
-    // text.push('Sunrise:');
-    // text.push(getTime(new Date(weather.current.sunrise * 1000)));
-    // text.push('Sunset:');
-    // text.push(getTime(new Date(weather.current.sunset * 1000)));
-    // document.getElementById('weather').innerHTML = text.join(' ');
+    sunset = new Date(weather.current.sunset * 1000);
+    console.log('sunset', sunset, weather.current);
     savedTemp = Math.round(kToF(weather.current.temp));
 }
 
@@ -43,18 +41,22 @@ function formatTempRange(temps) {
     return temp;
 }
 
-function getTime(time) {
-    const parts = dateTimeFormat.formatToParts(new Date(time));
-    return parts[8].value + ':' + parts[10].value;
-}
-
 function updateTime() {
-    const time = new Date();
-    const parts = dateTimeFormat.formatToParts(new Date());
-    console.log('time', time.getTime());
-    document.getElementById('time').innerHTML = parts[8].value + ':' + parts[10].value;
-    document.getElementById('date').innerHTML = parts[0].value + ', ' + parts[2].value + '&nbsp' + parts[4].value;
-    document.getElementById('temp').innerHTML = savedTemp ? (savedTemp + '°F') : 'No API Key';
+    const date = new Date();
+
+    const isNowNight = date.getHours() < 7;
+    if (isNowNight != isNight) {
+        isNight = isNowNight;
+        document.body.className = isNowNight ? 'night': 'day';
+    }
+    
+    const formattedTime = date.toLocaleString('en-US', {timeStyle: 'short'});
+    const timeParts = formattedTime.split(' ');
+    document.getElementById('time').innerHTML = timeParts[0];
+ 
+    const formattedDate = date.toLocaleString('en-US', {weekday: 'short', month: 'short', day: 'numeric'});
+    document.getElementById('date').innerHTML = formattedDate;
+    document.getElementById('temp').innerHTML = savedTemp ? (savedTemp + '°F') : '59°F';
 }
 
 const SEC = 1000;

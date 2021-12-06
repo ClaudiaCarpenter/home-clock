@@ -1,17 +1,17 @@
 * {font-family: 'Redressed'}
 
+.day {color:#E7DBA9; background-color: #231901}
+.night {color:#5c5330; background-color: black}
+
 body {margin: 0}
-
-td {text-align: center}
-
-* {background-color: #231901; color:#E7DBA9;}
 
 #weatherTemp {font-size: 180px; padding-left: 20px}
 #weatherIcon {font-size: 140px}
 
-#time  {font-size: 280px; text-align: center; padding: 150px 0 0 0; opacity:.6} 
-#date  {font-size: 72px;  text-align: center; padding: 15px 0; opacity:.4}
-#temp  {font-size: 72px;  text-align: center; padding: 15px 0 200px 0; opacity:.6}
+#time  {font-size: 280px; padding: 150px 0 0 0; opacity:.6} 
+#ampm  {font-size: 72px; padding: 350px 0 0 0; opacity:.4} 
+#date  {font-size: 72px; padding: 0 50px 0 0;  opacity:.4}
+#temp  {font-size: 72px; padding: 0 0 0 50px;  opacity:.4}
 
 #time #dark {border: 1px solid #E7DBA9}
 #time #light {border: 1px solid #231901}
