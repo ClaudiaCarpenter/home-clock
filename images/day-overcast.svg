@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1200">
+  <defs>
+    <linearGradient id="a" x1="963.3" y1="1208.04" x2="956.62" y2="-21.35" gradientTransform="matrix(1, 0, 0, -1, 0, 1200)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.01" stop-color="#3c3c3c"/>
+      <stop offset="0.27" stop-color="#5a5a5a"/>
+      <stop offset="0.65" stop-color="#7d7d7d"/>
+      <stop offset="0.71" stop-color="#8c8c8c"/>
+      <stop offset="0.84" stop-color="#ababab"/>
+      <stop offset="0.94" stop-color="#bebebe"/>
+      <stop offset="1" stop-color="#c5c5c5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1200" style="fill: url(#a)"/>
+</svg>
