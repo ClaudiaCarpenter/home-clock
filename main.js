@@ -4,7 +4,7 @@ const dateTimeFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', tim
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const key = urlParams.get('key') || 'd0b7b4a1e449b434e60316eae428877c';
+const key = urlParams.get('key') || 'd0b7b4a1e449b867530916eae428877c';
 
 let savedTemp = 0;
 let sunset = new Date();
